@@ -1,0 +1,23 @@
+.tableKH{
+    width: 100%;
+    }
+    .body{
+        font-size: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .tableKH,td,th{
+        border: 1px solid #333;
+        border-collapse: collapse;
+    }
+    .tableKH>tbody>td{
+       padding: 6px, 10px;
+       text-align: center;
+    }
+    .tableKH thead th{
+        text-align: center;
+        background-color: rgb(58, 166, 39) ;
+    }
+    
+    .tableKH.table-hover tbody tr:hover{
+        background:#333;
+    }
