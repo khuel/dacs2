@@ -73,6 +73,14 @@ Route::get('/admin/dashboard', function () {
 Route::get('/admin/qladmin', function () {
     return view('admin.qladmin');
 })->name('qladmin.');
+Route::get('/admin/add_category', function () {
+    return view('admin.add_category');
+})->name('add_category.');
+Route::get('/admin/edit_category', function () {
+    return view('admin.edit_category');
+})->name('edit_category.');
+
+
 
 
 
