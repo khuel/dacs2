@@ -25,26 +25,26 @@
           <ul class="nav child_menu">
             <li><a href="{{ route('add_category.') }}">Thêm danh mục</a></li>
             <li><a href="{{ route('edit_category.') }}">Chỉnh sửa danh mục</a></li>
-            <li><a href="index3.html">Danh sách danh mục</a></li>
+            <li><a href="{{ route('categorylist.') }}">Danh sách danh mục</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-edit"></i> Quản lý sản phẩm  <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="form.html">Thêm sản phẩm</a></li>
-            <li><a href="form_advanced.html">Chỉnh sửa sản phẩm</a></li>
-            <li><a href="form_validation.html">Danh sách sản phẩm</a></li>
+            <li><a href="{{ route('add_product.') }}">Thêm sản phẩm</a></li>
+            <li><a href="{{ route('edit_product.') }}">Chỉnh sửa sản phẩm</a></li>
+            <li><a href="{{ route('product_list.', ['id'=>1]) }}">Danh sách sản phẩm</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-desktop"></i> Quản lý khách hàng <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="general_elements.html">Chỉnh sửa khách hàng </a></li>
-            <li><a href="media_gallery.html">Danh sách khách hàng</a></li>
+            <li><a href="{{ route('edit_user.') }}">Chỉnh sửa thông tin khách hàng </a></li>
+            <li><a href="{{ route('list_user.') }}">Danh sách khách hàng</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-table"></i> Chăm sóc khách hàng <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="tables.html">Email khách hàng </a></li>
-            <li><a href="tables_dynamic.html">SDT khách hàng </a></li>
+            <li><a href="{{ route('email_user.') }}">Email khách hàng </a></li>
+            <li><a href="{{ route('phone_user.') }}">SDT khách hàng </a></li>
           </ul>
         </li>
       </ul>
