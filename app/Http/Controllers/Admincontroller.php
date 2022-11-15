@@ -13,6 +13,11 @@ class Admincontroller extends Controller
         return $credentials;
     }
 
+    public function statics (){
+        $adminUser= Auth::guard('admin')->user();
+        return view('admin.statics', ['user'=>$adminUser]);
+    }
+
     public function dashboard()
     {
         if (Auth::guard('admin')->check()) {

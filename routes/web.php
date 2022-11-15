@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admincontroller;
 use App\Http\Controllers\editingcontroller;
-
+use App\Http\Controllers\listingcontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -115,3 +115,4 @@ Route::get('/admin/phone_user', function () {
 Route::post('/admin/login', [AdminController::class, 'loginPost'])->name('admin.loginPost');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/listing/{model}', [listingcontroller::class, 'index'])->name('listing.index');
+
