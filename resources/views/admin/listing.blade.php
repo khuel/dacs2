@@ -36,7 +36,7 @@
             <div class="">
               <div class="page-title">
                 <div class="title_left">
-                  <h3>Tables <small>Some examples to get you started</small></h3>
+                  <h3>Cửa hàng thực phẩm sạch </h3>
                 </div>
   
                 <div class="title_right">
@@ -58,7 +58,7 @@
                 <div class="col-md-12 col-sm-12  ">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Bordered table <small>Bordered table subtitle</small></h2>
+                      <h2>Danh sách sản phẩm được thêm </h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -88,25 +88,27 @@
                           <?php foreach ($records as $record) {
                             ?>
                           <tr>
-                            <?php foreach ($configs as $config ) { ?>
-                              <?php switch($config['type']){
-                                   case "text":?>
-                                        <td><? =$record[$config['field']] ?></td>
-                                      <?php
-                                         break;
-                                    case "number":?>
-                                          <td><? =$record[$config['field']] ?></td>
-                                          <?php
-                                         break;
-
-                                    case "image": ?>
-                                          <td><? =$record[$config['field']] ?></td>
-                                          <?php
-                                         break;
-                               } ?>
-                            <?php } ?>
+                            <?php foreach ($configs as $config => $value) { ?>
+                              <?php switch($configs['type']){
+                                case "text":
+                                ?>
+                                <td><?= $record[$config['field']]?></td>
+                                <?php
+                                break;
+                                case "image":?>
+                                <td><img onerror="" alt=""><?= $record[$config['field']]?></td>
+                                <?php
+                                break;
+                                case "number":?>
+                                <td><?= number_format($record[$config['filed']])?></td>
+                                <?php
+                                break;
+                            }
+                            ?>
+                            <?php} ?>
 
                           </tr>
+
                           <?php } ?>
                         </tbody>
                       </table>

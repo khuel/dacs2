@@ -9,48 +9,20 @@ class listingcontroller extends Controller
 {
     public function index ( Request $request, $modelName)
     {
+        $adminUser= Auth::guard('admin')->user();
         $model = '\App\Models\\'.ucfirst($modelName) ;
         $records= $model:: paginate(15);
-        $adminUser= Auth::guard('admin')->user();
-        $configs= array(
-            array(
-                'field'=>'id',
-                'name'=>'ID',
-                'type'=>'text'
-            ),
-       
-            array(
-                'field'=>'name',
-                'name'=>'Tên sản phẩm',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'image',
-                'name'=>'Ảnh sản phẩm',
-                'type'=>'image'
-            ),
-            array(
-                'field'=>'price',
-                'name'=>'Giá sản phẩm',
-                'type'=>'number'
-            ),
-            array(
-                'field'=>'created_at',
-                'name'=>'Ngày tạo',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'upadted_at',
-                'name'=>'Ngày cập nhật',
-                'type'=>'text'
-            ),
-        );
+        $model = new $model;
+        $configs =$model->listingConfigs();
+
+        // $configs= ;
         return view('admin.listing', [
             'user'=>$adminUser,
             'records'=>$records,
             'configs'=>$configs
         ]);
     }
+
 
     
     

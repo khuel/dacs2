@@ -25,7 +25,7 @@
           <ul class="nav child_menu">
             <li><a href="{{ route('listing.index', ['model'=>'add_category']) }}">Thêm danh mục</a></li>
             <li><a href="{{ route('listing.index', ['model'=>'Edit_category']) }}">Chỉnh sửa danh mục</a></li>
-            <li><a href="{{ route('listing.index', ['model'=>'List_category']) }}">Danh sách danh mục</a></li>
+            <li><a href="{{ route('listing.index', ['model'=>'category']) }}">Danh sách danh mục</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-edit"></i> Quản lý sản phẩm  <span class="fa fa-chevron-down"></span></a>
@@ -38,7 +38,7 @@
         <li><a><i class="fa fa-desktop"></i> Quản lý khách hàng <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{ route('listing.index', ['model'=>'Edit_users']) }}">Chỉnh sửa thông tin khách hàng </a></li>
-            <li><a href="{{ route('listing.index', ['model'=>'List_users']) }}">Danh sách khách hàng</a></li>
+            <li><a href="{{ route('listing.index', ['model'=>'user']) }}">Danh sách khách hàng</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-table"></i> Chăm sóc khách hàng <span class="fa fa-chevron-down"></span></a>
