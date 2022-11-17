@@ -80,7 +80,7 @@
                         <thead>
                           <tr>
                             <?php foreach ($configs as $config ) { ?>
-                              <th><?=$config['name']?></th>
+                              <th><?= $config['name'] ?></th>
                               <?php } ?>
                           </tr>
                         </thead>
@@ -88,28 +88,28 @@
                           <?php foreach ($records as $record) {
                             ?>
                           <tr>
-                            <?php foreach ($configs as $config => $value) { ?>
-                              <?php switch($configs['type']){
+                            
+                            <?php foreach ($configs as $config) {
+                              switch ($config['type']) {
                                 case "text":
                                 ?>
-                                <td><?= $record[$config['field']]?></td>
+                                <td><?= $record[$config['field']] ?> </td>
+                                <?php break;
+                                case "image":
+                                ?> 
+                                <td><img src="public/img/avt.jpg" ></td>
                                 <?php
                                 break;
-                                case "image":?>
-                                <td><img onerror="" alt=""><?= $record[$config['field']]?></td>
-                                <?php
+                                case "number": 
+                                ?>
+                                <td><?= number_format($record[$config['field']]) ?></td>
+                                <?php 
                                 break;
-                                case "number":?>
-                                <td><?= number_format($record[$config['filed']])?></td>
-                                <?php
-                                break;
-                            }
-                            ?>
-                            <?php} ?>
-
+                              }
+                            } ?>
                           </tr>
 
-                          <?php } ?>
+                          <?php } ?> 
                         </tbody>
                       </table>
   
