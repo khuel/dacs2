@@ -1,0 +1,12 @@
+.filter-form{
+    background: #fff;
+    padding: 20px;
+}
+
+.filter-form label{
+    font-weight: bold;
+}
+.filter-item{
+    display: inline-block;
+    margin-right: 15px;
+}

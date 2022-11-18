@@ -4,34 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Base;
 
-class Category extends Model
+class Category extends Base
 {
     use HasFactory;
+    public $title="DANH MỤC";
 
     public function listingConfigs(){
-        return array(
+        $defautlistingConfigs = parent::defautlistingConfigs();
+        $listingConfigs= array(
             array(
                 'field'=>'id',
                 'name'=>'ID',
-                'type'=>'text'
+                'type'=>'text',
+                'filter'=>'equal'
             ),
        
             array(
                 'field'=>'name',
                 'name'=>'Tên danh mục',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'created_at',
-                'name'=>'Ngày tạo',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'upadted_at',
-                'name'=>'Ngày cập nhật',
-                'type'=>'text'
-            ),
+                'type'=>'text',
+                'filter'=>'like'
+            )
         );
+        return array_merge($listingConfigs, $defautlistingConfigs);
     }
 }

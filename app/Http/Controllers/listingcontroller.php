@@ -11,15 +11,16 @@ class listingcontroller extends Controller
     {
         $adminUser= Auth::guard('admin')->user();
         $model = '\App\Models\\'.ucfirst($modelName) ;
-        $records= $model:: paginate(15);
         $model = new $model;
         $configs =$model->listingConfigs();
-
-        // $configs= ;
+        $conditions = $model->getFilter($request, $configs);
+        $records= $model->getRecords($conditions);
         return view('admin.listing', [
             'user'=>$adminUser,
             'records'=>$records,
-            'configs'=>$configs
+            'modelName'=>$modelName,
+            'configs'=>$configs,
+            'title'=>$model->title
         ]);
     }
 

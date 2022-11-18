@@ -74,36 +74,6 @@ Route::get('/admin/dashboard', function () {
 Route::get('/admin/qladmin', function () {
     return view('admin.qladmin');
 })->name('qladmin.');
-Route::get('/admin/add_category', function () {
-    return view('admin.add_category');
-})->name('add_category.');
-Route::get('/admin/edit_category', function () {
-    return view('admin.edit_category');
-})->name('edit_category.');
-Route::get('/admin/category_list', function () {
-    return view('admin.category_list');
-})->name('categorylist.');
-Route::get('/admin/add_product', function () {
-    return view('admin.add_product');
-})->name('add_product.');
-Route::get('/admin/edit_product', function () {
-    return view('admin.edit_product');
-})->name('edit_product.');
-Route::get('/admin/product_list', function () {
-    return view('admin.product_list');
-})->name('product_list.');
-Route::get('/admin/edit_user', function () {
-    return view('admin.edit_user');
-})->name('edit_user.');
-Route::get('/admin/list_user', function () {
-    return view('admin.list_user');
-})->name('list_user.');
-Route::get('/admin/email_user', function () {
-    return view('admin.email_user');
-})->name('email_user.');
-Route::get('/admin/phone_user', function () {
-    return view('admin.phone_user');
-})->name('phone_user.');
 
 
 
@@ -115,4 +85,5 @@ Route::get('/admin/phone_user', function () {
 Route::post('/admin/login', [AdminController::class, 'loginPost'])->name('admin.loginPost');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/listing/{model}', [listingcontroller::class, 'index'])->name('listing.index');
+Route::post('/admin/listing/{model}', [listingcontroller::class, 'index'])->name('listing.index');
 

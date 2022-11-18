@@ -4,23 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Base;
 
-class Product extends Model
+class Product extends Base
 {
     use HasFactory;
-
+public $title="SẢN PHẨM ";
     public function listingConfigs(){
-        return array(
+        $defautlistingConfigs = parent::defautlistingConfigs();
+        $listingConfigs= array(
             array(
                 'field'=>'id',
                 'name'=>'ID',
-                'type'=>'text'
+                'type'=>'text',
+                'filter'=>'equal'
             ),
        
             array(
                 'field'=>'name',
                 'name'=>'Tên sản phẩm',
-                'type'=>'text'
+                'type'=>'text',
+                'filter'=>'like'
             ),
             array(
                 'field'=>'image',
@@ -30,18 +34,10 @@ class Product extends Model
             array(
                 'field'=>'price',
                 'name'=>'Giá sản phẩm',
-                'type'=>'number'
-            ),
-            array(
-                'field'=>'created_at',
-                'name'=>'Ngày tạo',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'upadted_at',
-                'name'=>'Ngày cập nhật',
-                'type'=>'text'
-            ),
+                'type'=>'number',
+                'filter'=>'between'
+            )
         );
+        return array_merge($listingConfigs, $defautlistingConfigs);
     }
 }

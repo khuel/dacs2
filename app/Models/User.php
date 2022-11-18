@@ -2,80 +2,38 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Base;
 
-
-class User extends Authenticatable
+class User extends Base
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    use HasFactory;
+    public $title="KHÁCH HÀNG";
 
     public function listingConfigs(){
-        return array(
+        $defautlistingConfigs = parent::defautlistingConfigs();
+        $listingConfigs= array(
             array(
                 'field'=>'id',
                 'name'=>'ID',
-                'type'=>'text'
+                'type'=>'text',
+                'filter'=>'equal'
             ),
        
             array(
                 'field'=>'name',
-                'name'=>'Tên khách hàng',
-                'type'=>'text'
+                'name'=>'Tên sản khách hàng',
+                'type'=>'text',
+                'filter'=>'like'
             ),
             array(
                 'field'=>'email',
-                'name'=>'Email đăng nhập',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'email_verified_at',
-                'name'=>'Thời gian được xác nhận',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'created_at',
-                'name'=>'Ngày tạo',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'upadted_at',
-                'name'=>'Ngày cập nhật',
-                'type'=>'text'
-            ),
+                'name'=>'Email',
+                'type'=>'text',
+                'filter'=>'like'
+            )
         );
+        return array_merge($listingConfigs, $defautlistingConfigs);
     }
 }

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Thêm danh mục</title>
+    <title>Admin</title>
     <!-- Bootstrap -->
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -18,117 +19,159 @@
 
     <!-- Custom Theme Style -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-  </head>
+    <link rel="stylesheet" href="{{ asset('css/QuanLy/listing.css') }}">
+</head>
 
-  <body class="nav-md">
+<body class="nav-md">
     <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-        @include('admin.left_side_bar_menu')
-        </div>
-
-        <!-- top navigation -->
-       @include('admin.top_nav')
-        <!-- /top navigation -->
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-              <div class="page-title">
-                <div class="title_left">
-                  <h3>Cửa hàng thực phẩm sạch </h3>
-                </div>
-  
-                <div class="title_right">
-                  <div class="col-md-5 col-sm-5   form-group pull-right top_search">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="clearfix"></div>
-  
-              <div class="row" style="display: block;">
-            
-                <div class="col-md-12 col-sm-12  ">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Danh sách sản phẩm được thêm </h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="#">Settings 1</a>
-                              <a class="dropdown-item" href="#">Settings 2</a>
-                            </div>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-  
-                      <table class="table table-bordered">
-                        <thead>
-                          <tr>
-                            <?php foreach ($configs as $config ) { ?>
-                              <th><?= $config['name'] ?></th>
-                              <?php } ?>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <?php foreach ($records as $record) {
-                            ?>
-                          <tr>
-                            
-                            <?php foreach ($configs as $config) {
-                              switch ($config['type']) {
-                                case "text":
-                                ?>
-                                <td><?= $record[$config['field']] ?> </td>
-                                <?php break;
-                                case "image":
-                                ?> 
-                                <td><img src="public/img/avt.jpg" ></td>
-                                <?php
-                                break;
-                                case "number": 
-                                ?>
-                                <td><?= number_format($record[$config['field']]) ?></td>
-                                <?php 
-                                break;
-                              }
-                            } ?>
-                          </tr>
-
-                          <?php } ?> 
-                        </tbody>
-                      </table>
-  
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="clearfix"></div>
-              </div>
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                @include('admin.left_side_bar_menu')
             </div>
-          </div>
-        <!-- /page content -->
+
+            <!-- top navigation -->
+            @include('admin.top_nav')
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+                    <h3><?= $title ?></h3>
+                    <form class="filter-form" action="{{ route('listing.index', ['model'=>$modelName]) }}" method="POST">
+                      @csrf
+                        <fieldset>
+                            <legend>Tìm kiếm:</legend>
+                            <?php foreach ($configs as $config) { 
+                                       if(!empty($config['filter'])){ 
+                                          switch ($config['filter']) { 
+                                             case "equal": ?>
+                                               <div class="filter-item">
+                                               <label><?=$config['name']?></label>
+                                               <input type="text"  name="<?=$config['field']?>" value="">
+                                              </div>
+                                              <?php
+                                              break;
+
+                                             case "like": ?>
+                                               <div class="filter-item">
+                                               <label><?=$config['name']?></label>
+                                                <input type="text"  name="<?=$config['field']?>" value="">
+                                              </div>
+                                               <?php
+                                               break;
+
+                                              case "between": ?>
+                                              <div class="filter-item">
+                                                <label><?=$config['name']?>từ</label>
+                                                <input type="text" name="<?=$config['field']?>[from]">
+                                                <label>Đến: </label>
+                                                <input type="text"name="<?=$config['field']?>[to]">
+                                              </div>
+                                               <?php
+                                             break;
+                       } 
+                     } 
+                   } ?>
+                            <input type="submit" value="Tìm kiếm">
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row" style="display: block;">
+
+                    <div class="col-md-12 col-sm-12  ">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Danh sách sản phẩm được thêm </h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                            aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Settings 1</a>
+                                            <a class="dropdown-item" href="#">Settings 2</a>
+                                        </div>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <?php foreach ($configs as $config ) { ?>
+                                            <th><?= $config['name'] ?></th>
+                                            <?php } ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($records as $record) {
+                                        ?>
+                                        <tr>
+
+                                            <?php foreach ($configs as $config) {
+                                             switch ($config['type']) {
+                                                  case "text":
+                                             ?>
+                                            <td><?= $record[$config['field']] ?> </td>
+                                            <?php break;
+                                               case "image":
+                                            ?>
+                                            <td><img src="<?= $record[$config['field']] ?>"></td>
+                                            <?php
+                                              break;
+                                               case "number": 
+                                            ?>
+                                            <td><?= number_format($record[$config['field']]) ?></td>
+                                            <?php 
+                                               break;
+                                               case "copy": 
+                                            ?>
+                                            <td><a href="#"><i class="fa-thin fa-copy"></i>Copy</a></td>
+                                            <?php 
+                                                break;
+                                                case "edit": 
+                                           ?>
+                                            <td><a href="#"><i class="fa-thin fa-pen-to-square"></i>Edit</a></td>
+                                            <?php 
+                                                break;
+                                               case "delete": 
+                                            ?>
+                                            <td><a href="#"><i class="fa-sharp fa-solid fa-trash"></i> Delete</a>
+                                            </td>
+                                            <?php 
+                                                break;
+                                      }
+                             }              ?>
+                                        </tr>
+
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <?= $records->links('pagination::bootstrap-4') ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
         </div>
+        <!-- /page content -->
+    </div>
     </div>
 
     <!-- jQuery -->
     <script src="/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-   <script src="/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
     <script src="/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
@@ -152,8 +195,9 @@
     <!-- bootstrap-daterangepicker -->
     <script src="/vendors/moment/min/moment.min.js"></script>
     <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-    
+
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('js/admin.js') }}"></script>
-  </body>
+</body>
+
 </html>
