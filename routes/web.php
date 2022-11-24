@@ -87,3 +87,4 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adm
 Route::get('/admin/listing/{model}', [listingcontroller::class, 'index'])->name('listing.index');
 Route::post('/admin/listing/{model}', [listingcontroller::class, 'index'])->name('listing.index');
 
+test pull 
