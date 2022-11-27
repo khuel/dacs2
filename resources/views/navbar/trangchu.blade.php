@@ -57,7 +57,11 @@
                                 </div>
                                 <div class="space" style="display:block; height: auto; padding-top: 20px;"></div>
                                 <h3>
-                                    <a href="cuahang.html" id="text-menu">Hải sản</a>
+                                    <a  href="cuahang.html" id="text-menu">
+                                        {{-- @foreach ($listingConfigs as $listingConfig )
+                                            {{$listingConfig->name}}
+                                        @endforeach --}}
+                                    </a>
                                 </h3>
                             </div>
                         </div>

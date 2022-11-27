@@ -10,34 +10,100 @@ class Product extends Base
 {
     use HasFactory;
 public $title="SẢN PHẨM ";
-    public function listingConfigs(){
-        $defautlistingConfigs = parent::defautlistingConfigs();
+    public function configs(){
+        $defautlistingConfigs = parent::defaultlistingConfigs();
         $listingConfigs= array(
             array(
                 'field'=>'id',
                 'name'=>'ID',
                 'type'=>'text',
-                'filter'=>'equal'
+                'filter'=>'equal',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>false
             ),
        
             array(
                 'field'=>'name',
                 'name'=>'Tên sản phẩm',
                 'type'=>'text',
-                'filter'=>'like'
+                'filter'=>'like',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>true,
+                'validate'=>'required|max:255'
             ),
             array(
                 'field'=>'image',
                 'name'=>'Ảnh sản phẩm',
-                'type'=>'image'
+                'type'=>'image',
+                'listing'=>true,
+                'editing'=>true,
+                'validate'=>'required'
             ),
             array(
                 'field'=>'price',
                 'name'=>'Giá sản phẩm',
                 'type'=>'number',
-                'filter'=>'between'
+                'filter'=>'between',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>true,
+                'validate'=>'required|Numeric'
+            ),
+            array(
+                'field'=>'content',
+                'name'=>'Nội dung sản phẩm',
+                'type'=>'ckeditor',
+                'listing'=>false,
+                'editing'=>true
             )
+
         );
+        $editingConfigs= array(
+            array(
+                'field'=>'id',
+                'name'=>'ID',
+                'type'=>'text',
+                'filter'=>'equal',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>false
+            ),
+       
+            array(
+                'field'=>'name',
+                'name'=>'Tên sản phẩm',
+                'type'=>'text',
+                'filter'=>'like',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>true
+            ),
+            array(
+                'field'=>'image',
+                'name'=>'Ảnh sản phẩm',
+                'type'=>'image',
+                'listing'=>true,
+                'editing'=>true
+            ),
+            array(
+                'field'=>'price',
+                'name'=>'Giá sản phẩm',
+                'type'=>'number',
+                'filter'=>'between',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>true
+            ),
+            array(
+                'field'=>'content',
+                'name'=>'Nội dung sản phẩm',
+                'type'=>'ckeditor',
+                'listing'=>false,
+                'editing'=>true
+            )
+            );
         return array_merge($listingConfigs, $defautlistingConfigs);
     }
 }

@@ -12,6 +12,7 @@ class Order extends Base
     use HasFactory;
     public $title="ĐƠN HÀNG";
     public function listingConfigs(){
+        $defautlistingConfigs = parent::defaultlistingConfigs();
         $listingConfigs= array(
             array(
                 'field'=>'id',
@@ -50,5 +51,6 @@ class Order extends Base
             ),
             
         );
+        return array_merge($listingConfigs, $defautlistingConfigs);
     }
 }

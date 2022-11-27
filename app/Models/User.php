@@ -12,7 +12,7 @@ class User extends Base
     public $title="KHÁCH HÀNG";
 
     public function listingConfigs(){
-        $defautlistingConfigs = parent::defautlistingConfigs();
+        $defautlistingConfigs = parent::defaultlistingConfigs();
         $listingConfigs= array(
             array(
                 'field'=>'id',

@@ -77,12 +77,10 @@
                     <li class="menubar1">
                         <a href="{{ route('cuahang.') }}" class="menu-link">Cửa hàng</a>
                         <ul class="sub-menu">
-                            <li><a href="{{ route('cuahangraucu.') }}">Rau củ</a></li>
-                            <li><a href="{{ route('cuahangraucu.') }}">Hải sản</a></li>
-                            <li><a href="{{ route('cuahangraucu.') }}">Thịt trứng</a></li>
-                            <li><a href="{{ route('cuahangraucu.') }}">Trái cây</a></li>
-                            <li><a href="{{ route('cuahangraucu.') }}">Đồ khô</a></li>
-                            <li><a href="{{ route('cuahangraucu.') }}">Đồ uống</a></li>
+                            {{-- @foreach ($categories as $category)
+                            <li><a href="{{ route('cuahangraucu.') }}">{{$category->name}}</a></li>
+                            @endforeach --}}
+                            
                         </ul>
                     </li>
                     <li class="menubar1">

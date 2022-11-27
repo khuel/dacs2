@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\addingcontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admincontroller;
+use App\Http\Controllers\editingconroller;
 use App\Http\Controllers\editingcontroller;
+use App\Http\Controllers\InsertDB;
 use App\Http\Controllers\listingcontroller;
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +18,7 @@ use App\Http\Controllers\listingcontroller;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function() {
     return view('navbar/trangchu');
 })->name('trangchu.');
 
@@ -75,6 +78,11 @@ Route::get('/admin/qladmin', function () {
     return view('admin.qladmin');
 })->name('qladmin.');
 
+// Route::get('/home', function () {
+//     return view('QuanLy.home');
+// });
+
+// Route::get('/home', [InsertDB::class, 'get']);
 
 
 
@@ -86,4 +94,7 @@ Route::post('/admin/login', [AdminController::class, 'loginPost'])->name('admin.
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/listing/{model}', [listingcontroller::class, 'index'])->name('listing.index');
 Route::post('/admin/listing/{model}', [listingcontroller::class, 'index'])->name('listing.index');
+Route::get('/admin/editing/{model}', [editingcontroller::class, 'create'])->name('editing.create');
+Route::post('/admin/editing/{model}', [editingcontroller::class, 'store'])->name('editing.store');
+
 

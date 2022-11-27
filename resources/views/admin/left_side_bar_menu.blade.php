@@ -24,11 +24,13 @@
         <li><a><i class="fa fa-home"></i> Quản lý danh mục <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{ route('listing.index', ['model'=>'category']) }}">Danh mục</a></li>
+            <li><a href="{{ route('editing.create', ['model'=>'category']) }}">Thêm danh mục</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-edit"></i> Quản lý sản phẩm  <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{ route('listing.index', ['model'=>'product']) }}">Sản phẩm</a></li>
+            <li><a href="{{ route('editing.create', ['model'=>'product']) }}">Thêm sản phẩm</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-desktop"></i> Quản lý khách hàng <span class="fa fa-chevron-down"></span></a>
@@ -39,6 +41,7 @@
         <li><a><i class="fa fa-table"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{{ route('listing.index', ['model'=>'order']) }}"> Đơn hàng </a></li>
+
           </ul>
         </li>
       </ul>

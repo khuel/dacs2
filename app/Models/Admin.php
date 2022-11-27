@@ -14,7 +14,7 @@ class Admin extends Base
     public $title="ADMIN";
 
     public function listingConfigs(){
-        $defautlistingConfigs = parent::defautlistingConfigs();
+        $defautlistingConfigs = parent::defaultlistingConfigs();
         return array(
             array(
                 'field'=>'id',

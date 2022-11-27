@@ -11,23 +11,33 @@ class Category extends Base
     use HasFactory;
     public $title="DANH MỤC";
 
-    public function listingConfigs(){
-        $defautlistingConfigs = parent::defautlistingConfigs();
+    public function configs(){
+        $defautlistingConfigs = parent::defaultlistingConfigs();
         $listingConfigs= array(
             array(
                 'field'=>'id',
                 'name'=>'ID',
                 'type'=>'text',
-                'filter'=>'equal'
+                'filter'=>'equal',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>false
             ),
        
             array(
                 'field'=>'name',
                 'name'=>'Tên danh mục',
                 'type'=>'text',
-                'filter'=>'like'
+                'filter'=>'like',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>true
+                
             )
+            
+
         );
+        
         return array_merge($listingConfigs, $defautlistingConfigs);
     }
 }
