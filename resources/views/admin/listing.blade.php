@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin</title>
+    <title>admin</title>
     <!-- Bootstrap -->
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -42,6 +42,7 @@
                         <fieldset>
                             <legend>Tìm kiếm:</legend>
                             <?php
+                            
                             foreach ($configs as $config) {
                                 if (!empty($config['filter'])) {
                                     switch ($config['filter']) {
@@ -107,6 +108,7 @@
                                     <thead>
                                         <tr>
                                             <?php foreach ($configs as $config) { ?>
+                                                
                                                 <?php if (!empty($config['sort'])) { ?>
                                                     <?php if ($orderBy['field'] == $config['field']) { ?>
                                                         <?php if ($orderBy['sort'] == "desc") { ?>
@@ -127,9 +129,11 @@
                                             <?php foreach ($records as $record) {
                                                 ?>
                                             <tr>
-                                                <?php foreach ($configs as $config) { ?>
+                                                <?php foreach ($configs as $config) {  
+                                                      ?>
                                                     <?php
-                                                    switch ($config['type']) {
+                                                    switch ($config['type']) { 
+                                                        
                                                         case "text":
                                                             ?>
                                                             <td><?= $record[$config['field']] ?></td>
@@ -145,29 +149,47 @@
                                                             <td><?= number_format($record[$config['field']], 0, ',', '.') ?></td>
                                                             <?php
                                                             break;
-                                                         case "bit":
+                                                        case "sl":
                                                             ?>
                                                             <td><?= $record[$config['field']] ?></td>
                                                             <?php
                                                             break;
-                                                        case "copy":
+                                                        case "bit":
                                                             ?>
-                                                            <td><a href="#"><i class="fa fa-clone" aria-hidden="true"></i>&nbsp;Copy</a></td>
+                                                            <td><?= $record[$config['field']] ?></td>
                                                             <?php
                                                             break;
+                                                        
+                                                        case "button":
+                                                            ?>
+                                                            <input type="text"><td><button value="Xác nhận">Xác Nhận</button><button value="Hủy">Hủy</button></td>
+                                                            <?php
+                                                            break;
+                                                        
                                                         case "edit":
                                                             ?>
-                                                            <td><a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Sửa</a></td>
+                                                            <?php
+                                                             $id=$record['id'];
+                                                            ?>
+                                                            <td><a href="{{ route('listing.edit', ['model'=>$modelName, 'id'=>$id]) }}" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Sửa</a></td>
                                                             <?php
                                                             break;
                                                         case "delete":
-                                                            ?>
-                                                            <td><a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Xóa</a></td>
+                                                        ?>
                                                             <?php
-                                                            break;
+                                                             $id=$record['id'];
+                                                            ?>
+                                                            <td><form method="POST" action="/admin/listing/{{$modelName}}/{{$id}}" onsubmit="return ConfirmDelete( this )">
+                                                                @method('DELETE')
+                                                                @csrf
+                                                                <button type="submit">Xóa</button>
+                                                            </form></td>
+                                                            <?php
+                                                            break;  
+                                                            
                                                     }
                                                     ?>
-                <?php } ?>
+                                          <?php } ?>
                                             </tr>
                                 <?php } ?>
                                     </tbody>

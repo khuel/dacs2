@@ -18,7 +18,8 @@ class CreateOrdersTable extends Migration
             $table->string('name',100);
             $table->string('address', 255);
             $table->string('phone', 11,2);
-            $table->string('delivery_date');
+            $table->string('status',100);
+            $table->string('product',3000);
         });
     }
 

@@ -19,7 +19,6 @@ class editingcontroller extends Controller
         $categories = DB::table('categories')->select('*');
         $categories = $categories->get();
         
-
         return view('admin.editing', [
             'user' => $adminUser,
             'modelName' => $modelName,
@@ -33,24 +32,20 @@ class editingcontroller extends Controller
         $model = '\App\Models\\' . ucfirst($modelName);
         $model = new $model;
         $configs = $model->editingConfigs();
+        
         $arrayValidateField = [];
-        foreach ($configs as $config) {
+        foreach ($configs as $config) { 
             if (!empty($config['validate'])) {
                 $arrayValidateField[$config['field']] = $config['validate'];
             }
         }
-
-        
-       
        $validated = $request->validate($arrayValidateField);
-
-
-
-        foreach ($configs as $config) {
+       $data=[];
+        foreach ($configs as $config) { 
             if (!empty($config['editing']) && $config['editing'] == true) {
                 switch ($config['type']) {
                     case 'image';
-                        if ($request->hasFile($config['field'])) {
+                        if ($request->hasFile($config['field'])) {dd($config['field']);exit;
                             $name = $request->file($config['field'])->getClientOriginalName();
                             $path = $request->file($config['field'])->storeAs(
                                 'public',
@@ -61,6 +56,7 @@ class editingcontroller extends Controller
                         break;
                     default:
                         $model->{$config['field']} = $request->input($config['field']);
+                       
                 }
             }
         }
@@ -72,4 +68,6 @@ class editingcontroller extends Controller
             'configs' => $configs,
         ]);
     }
+
+    
 }

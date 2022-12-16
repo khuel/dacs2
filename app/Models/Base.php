@@ -124,7 +124,8 @@ class Base extends Model
                 'type' => 'text',
                 'sort' => true,
                 'listing' => true,
-                'editing' => false
+                'editing' => false,
+                'editListing'=>true
             ),
             array(
                 'field' => 'created_at',
@@ -132,7 +133,8 @@ class Base extends Model
                 'type' => 'text',
                 'sort' => true,
                 'listing' => true,
-                'editing' => false
+                'editing' => false,
+                'editListing'=>true
             ),  
             array(
                 'field' => 'edit',

@@ -94,6 +94,15 @@ Route::post('/admin/listing/{model}', [listingcontroller::class, 'index'])->name
 Route::get('/admin/editing/{model}', [editingcontroller::class, 'create'])->name('editing.create');
 Route::post('/admin/editing/{model}', [editingcontroller::class, 'store'])->name('editing.store');
 
+
+Route::get('/admin/listing/{model}/{id}', [listingcontroller::class, 'edit'])->name('listing.edit');
+
+Route::put('/admin/listing/{model}/{id}  ', [listingcontroller::class, 'update'])->name('listing.update');
+
+Route::DELETE('/admin/listing/{model}/{id}', [listingcontroller::class, 'destroy'])->name('listing.destroy');
+
+Route::get('/admin/listing/product/{category_id}/{id}', [listingcontroller::class, 'show'])->name('product.show');
+
 // route trang chu
 Route::get('/', [indexcontroller::class, 'index'])->name('index.index');
 

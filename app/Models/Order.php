@@ -12,7 +12,6 @@ class Order extends Base
     use HasFactory;
     public $title="ĐƠN HÀNG";
     public function listingConfigs(){
-        $defautlistingConfigs = parent::defaultlistingConfigs();
         $listingConfigs= array(
             array(
                 'field'=>'id',
@@ -40,17 +39,27 @@ class Order extends Base
                 'filter'=>'like'
             ),
             array(
-                'field'=>'created_day',
-                'name'=>'Ngày tạo',
+                'field'=>'product',
+                'name'=>'Sản phẩm',
                 'type'=>'text'
+            ),
+            array(
+                'field'=>'price',
+                'name'=>'Giá sản phẩm',
+                'type'=>'number',
+                'listing'=>true,
+                'editing'=>true,
+                
             ),
             array(
                 'field'=>'status',
                 'name'=>'Tình trạng',
-                'type'=>'text'
+                'type'=>'button'
             ),
             
+            
+            
         );
-        return array_merge($listingConfigs, $defautlistingConfigs);
+        return array_merge($listingConfigs);
     }
 }
