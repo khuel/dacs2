@@ -136,13 +136,7 @@ class Base extends Model
                 'editing' => false,
                 'editListing'=>true
             ),  
-            array(
-                'field' => 'edit',
-                'name' => 'Sửa',
-                'type' => 'edit',
-                'listing' => true,
-                'editing' => false
-            ),
+            
             array(
                 'field' => 'delete',
                 'name' => 'Xóa',

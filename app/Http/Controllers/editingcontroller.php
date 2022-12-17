@@ -45,7 +45,7 @@ class editingcontroller extends Controller
             if (!empty($config['editing']) && $config['editing'] == true) {
                 switch ($config['type']) {
                     case 'image';
-                        if ($request->hasFile($config['field'])) {dd($config['field']);exit;
+                        if ($request->hasFile($config['field'])) {
                             $name = $request->file($config['field'])->getClientOriginalName();
                             $path = $request->file($config['field'])->storeAs(
                                 'public',

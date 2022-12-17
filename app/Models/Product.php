@@ -84,7 +84,13 @@ class Product extends Base
                 'type'=>'bit',
                 'listing'=>true,
                 'editing'=>true,
-            )
+            ),array(
+                'field' => 'edit',
+                'name' => 'Sửa',
+                'type' => 'edit',
+                'listing' => true,
+                'editing' => false
+            ),
 
         );
         $editingConfigs= array(
@@ -157,7 +163,13 @@ class Product extends Base
                 'listing'=>true,
                 'editing'=>true,
                 'editListing'=>true
-            )
+            ),array(
+                'field' => 'edit',
+                'name' => 'Sửa',
+                'type' => 'edit',
+                'listing' => true,
+                'editing' => false
+            ),
             );
         return array_merge($listingConfigs, $defautlistingConfigs);
     }
