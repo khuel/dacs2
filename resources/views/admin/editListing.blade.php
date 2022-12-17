@@ -70,7 +70,7 @@
                                 action="{{ route('listing.update', ['model'=>$modelName,'id'=>$id ]) }}">
                                 @csrf
                                @method('PUT')
-                                <?php
+                                <?php 
                                 if (!empty($configs)) {
                                         foreach ($configs as $config) { 
                                                 switch ($config['type']) {
@@ -80,7 +80,7 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?=$config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <input type="text" class="form-control" name="name" placeholder="<?= htmlspecialchars($rcs->name) ?>"class="@error($id) is-invalid @enderror" />
+                                                        <input type="text" class="form-control" name="name" value="<?= htmlspecialchars($rcs->name) ?>"class="@error($id) is-invalid @enderror" />
                                                         @error('name')
                                                           <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
@@ -94,7 +94,7 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <input type="text" class="form-control" name="price" placeholder="<?= htmlspecialchars($rcs->price) ?>"class="@error( $field) is-invalid @enderror" />
+                                                        <input type="text" class="form-control" name="price" value="<?= htmlspecialchars($rcs->price) ?>"class="@error( $field) is-invalid @enderror" />
                                                         @error( 'price')
                                                           <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
@@ -108,7 +108,7 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <input type="text" class="form-control" name="amout" placeholder="<?= htmlspecialchars($rcs->amount) ?>"class="@error( $field) is-invalid @enderror" />
+                                                        <input type="text" class="form-control" name="amout" value="<?= htmlspecialchars($rcs->amount) ?>"class="@error( $field) is-invalid @enderror" />
                                                         @error( 'amount')
                                                           <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
@@ -122,7 +122,9 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <input type="file"  name="image"class="@error($field) is-invalid @enderror" />
+                                                        <input type="file" id="image"  value="{{ $rcs->image }}" name="image"  class="@error($field) is-invalid @enderror" />
+                                                        <input type="text" name="" id="" value="{{ $rcs->image }}">
+                                                        <img src="{{ url($rcs->image) }}" alt="" width="100" height="90">
                                                         @error($field)
                                                           <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
@@ -135,7 +137,7 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <textarea id="product-content"  name="content" class="form-control ckeditor-box" rows="3" placeholder="<?= htmlspecialchars($rcs->content) ?>"></textarea>
+                                                        <textarea id="product-content"  name="content" class="form-control ckeditor-box" rows="3" placeholder=""><?=$rcs->content ?></textarea>
                                                     </div>
                                                 </div>
                                                 <?php
@@ -163,13 +165,15 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <div class="checkbox">
-                                                            <input id="check1" type="checkbox" value="yes" name=<?= $config['field'] ?>  >
-                                                            <label for="check1">Yes</label>
-                                                            <br>
-                                                            <input id="check2" type="checkbox" name=featured_product value="no"  >
-                                                            <label for="check2">No</label>
-                                                        </div>
+                                                        <select class="form-control" name="featured_product" id="featured_product" placeholder="<?= htmlspecialchars($config['field']) ?>">
+                                                            @if ($rcs->featured_product=='yes')
+                                                            <option selected value="yes">Sản phẩm nổi bật</option>
+                                                            <option  value="no">Không phải sản phẩm nổi bật</option>
+                                                        @else
+                                                          <option selected value="no">Không phải sản phẩm nổi bật</option>
+                                                          <option selected value="yes">Sản phẩm nổi bật</option>
+                                                        @endif
+                                                 </select>
                                                     </div>
                                                 </div>
                                                 <?php

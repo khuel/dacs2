@@ -84,7 +84,7 @@ class Product extends Base
                 'type'=>'bit',
                 'listing'=>true,
                 'editing'=>true,
-            ),array(
+            ), array(
                 'field' => 'edit',
                 'name' => 'Sửa',
                 'type' => 'edit',
@@ -163,7 +163,7 @@ class Product extends Base
                 'listing'=>true,
                 'editing'=>true,
                 'editListing'=>true
-            ),array(
+            ), array(
                 'field' => 'edit',
                 'name' => 'Sửa',
                 'type' => 'edit',

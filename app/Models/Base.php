@@ -117,7 +117,13 @@ class Base extends Model
     }
 
     public function defaultlistingConfigs() {
-        return array(
+        return array(array(
+            'field' => 'delete',
+            'name' => 'Xóa',
+            'type' => 'delete',
+            'listing' => true,
+            'editing' => false
+        ),
             array(
                 'field' => 'updated_at',
                 'name' => 'Ngày cập nhật',
@@ -136,14 +142,8 @@ class Base extends Model
                 'editing' => false,
                 'editListing'=>true
             ),  
+           
             
-            array(
-                'field' => 'delete',
-                'name' => 'Xóa',
-                'type' => 'delete',
-                'listing' => true,
-                'editing' => false
-            )
         );
     }
 }

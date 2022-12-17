@@ -142,7 +142,6 @@
                                             case 'select':
                                             $field=$config['field'];
                                                 ?>
-                                               
                                                     <div class="form-group row ">
                                                         <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                         <div class="col-md-9 col-sm-9 ">
@@ -158,19 +157,18 @@
                                                 break;
                                              case 'bit':
                                             $field=$config['field'];
-                                                ?>
-                                                <div class="form-group row ">
-                                                    <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
-                                                    <div class="col-md-9 col-sm-9 ">
-                                                        <div class="checkbox">
-                                                            <input id="check1" type="checkbox" value="yes" name=<?= $config['field'] ?>  >
-                                                            <label for="check1">Yes</label>
-                                                            <br>
-                                                            <input id="check2" type="checkbox" name=<?= $config['field'] ?> value="no"  >
-                                                            <label for="check2">No</label>
+                                            ?>
+                                                    <div class="form-group row ">
+                                                        <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
+                                                        <div class="col-md-9 col-sm-9 ">
+                                                            <select class="form-control" name="<?= $config['field'] ?>" id="" placeholder="<?= htmlspecialchars($config['name']) ?>">
+                                                                <option value="yes">Sản phẩm nổi bật</option>
+                                                                <option value="no">Không phải sản phẩm nổi bật</option>
+                                                                      
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                
                                                 <?php
                                                 break;
                                         }
